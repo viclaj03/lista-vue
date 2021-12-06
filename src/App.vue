@@ -1,7 +1,7 @@
 <template>
 <div id="app">
   <h1>{{title}}</h1>
-  <todo-list v-if="todos.length"   :todos='todos' @del-this="deleteThis"></todo-list>
+  <todo-list v-if="todos.length"   :todos='todos' @del-this="deleteThis" @change-this='changeDone' ></todo-list>
   <p v-else>No hay tareas</p>
   <add-todo @add-list='addTodo' ></add-todo>
   <br>
@@ -58,6 +58,9 @@ export default {
     },
     deleteThis(key){
       this.todos.splice(key,1)
+    },
+    changeDone(key){
+      this.todos[key].done= !this.todos[key].done
     }
   }
 }
@@ -69,7 +72,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #000000;
+  color: #da1f1f;
   margin-top: 60px;
   text-align: left;
 }

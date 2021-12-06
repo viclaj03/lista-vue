@@ -1,6 +1,6 @@
 <template>
-        <ul  >
-           <todo-item  v-for="(item,key) in todos" :key="key"  :item="item" @dblclick="delThis(key)"></todo-item> 
+        <ul >
+           <todo-item @change-this='changeDoneThis(key)'  v-for="(item,key,) in todos" :key="key"   :item="item" @dblclick="delThis(key) "></todo-item> 
         </ul>
 </template>
 
@@ -13,8 +13,11 @@ export default {
     methods:{
       delThis(key) {
         this.$emit('del-this', key)
+      },
+      changeDoneThis(key){
+        this.$emit('change-this',key)
       }
-    }
+    },
 
 }
 </script>
